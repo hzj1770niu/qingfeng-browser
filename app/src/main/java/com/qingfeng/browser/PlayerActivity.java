@@ -135,6 +135,22 @@ public class PlayerActivity extends Activity {
         startTick();
     }
 
+    private void setFullscreen(boolean on) {
+        immersive = on;
+        Ui.setImmersive(this, on);
+        fullBtn.setText(on ? "退出全屏" : "全屏");
+        fullBtn.setContentDescription(on ? "退出全屏，显示状态栏" : "全屏，隐藏状态栏");
+    }
+
+    /** 视频一开始播就自动铺满全屏 */
+    private void autoFullscreen() {
+        if (immersive) {
+            return;
+        }
+        setFullscreen(true);
+        announce("已自动进入全屏播放");
+    }
+
     private void buildPlayer() {
         if (player != null) {
             player.release();
@@ -198,6 +214,7 @@ public class PlayerActivity extends Activity {
                 } else if (state == Player.STATE_READY && firstReady) {
                     firstReady = false;
                     announce("视频已就绪，开始播放");
+                    handler.postDelayed(PlayerActivity.this::autoFullscreen, 350);
                 } else if (state == Player.STATE_ENDED) {
                     announce("播放结束");
                     updatePlayButton();
@@ -210,6 +227,9 @@ public class PlayerActivity extends Activity {
             @Override
             public void onIsPlayingChanged(boolean isPlaying) {
                 updatePlayButton();
+                if (isPlaying && firstReady) {
+                    handler.postDelayed(PlayerActivity.this::autoFullscreen, 300);
+                }
             }
 
             @Override
@@ -304,10 +324,7 @@ public class PlayerActivity extends Activity {
         });
 
         fullBtn.setOnClickListener(v -> {
-            immersive = !immersive;
-            Ui.setImmersive(this, immersive);
-            fullBtn.setText(immersive ? "退出全屏" : "全屏");
-            fullBtn.setContentDescription(immersive ? "退出全屏，显示状态栏" : "全屏，隐藏状态栏");
+            setFullscreen(!immersive);
             announce(immersive ? "已进入全屏" : "已退出全屏");
         });
 
