@@ -56,11 +56,12 @@ public class Updater {
         String file = apkPath == null ? "" : apkPath;
         String name = file.contains("/") ? file.substring(file.lastIndexOf('/') + 1) : file;
         if (file.startsWith("apk/")) {
+            String raw = "https://raw.githubusercontent.com/" + REPO + "/main/" + file;
+            list.add("https://ghproxy.net/" + raw);
+            list.add("https://gh-proxy.com/" + raw);
+            list.add("https://ghfast.top/" + raw);
             list.add("https://cdn.jsdelivr.net/gh/" + REPO + "@main/" + file);
-            list.add("https://fastly.jsdelivr.net/gh/" + REPO + "@main/" + file);
-            list.add("https://raw.githubusercontent.com/" + REPO + "/main/" + file);
-            list.add("https://gh-proxy.com/https://raw.githubusercontent.com/" + REPO + "/main/" + file);
-            list.add("https://ghfast.top/https://raw.githubusercontent.com/" + REPO + "/main/" + file);
+            list.add(raw);
         }
         String rel = "https://github.com/" + REPO + "/releases/download/" + TAG_PREFIX + version + "/" + name;
         list.add(rel);
