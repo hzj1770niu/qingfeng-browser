@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">清风浏览器</string>
+    <string name="hint_url">输入网址或搜索内容</string>
+    <string name="go">前往</string>
+    <string name="back">后退</string>
+    <string name="forward">前进</string>
+    <string name="reload">刷新</string>
+    <string name="tabs">标签页</string>
+    <string name="menu">菜单</string>
+    <string name="player_btn_zero">内置播放器（未检测到视频）</string>
+    <string name="tip_longpress">提示：长按“标签页”按钮可关闭全部标签页</string>
+    <string name="close">关闭</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确定</string>
+</resources>

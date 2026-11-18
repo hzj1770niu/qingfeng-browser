@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/bg</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:colorPrimary">@color/bar</item>
+        <item name="android:colorPrimaryDark">#FF000000</item>
+        <item name="android:statusBarColor">#FF000000</item>
+        <item name="android:navigationBarColor">#FF000000</item>
+        <item name="android:textColorPrimary">@color/text</item>
+        <item name="android:textColorSecondary">@color/text_dim</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="PlayerTheme" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">
+        <item name="android:windowBackground">@color/bg</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Btn" parent="@android:style/Widget.Material.Button">
+        <item name="android:background">@drawable/btn_bg</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">50dp</item>
+        <item name="android:minWidth">64dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:layout_margin">3dp</item>
+    </style>
+
+    <style name="BtnBig" parent="Btn">
+        <item name="android:minHeight">64dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Txt" parent="@android:style/TextAppearance.Material.Title">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+</resources>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settingsRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp"
+            android:text="设置"
+            android:textColor="@color/text"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <Switch
+            android:id="@+id/swAutoPlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:showText="true"
+            android:text="网页视频允许自动播放"
+            android:textColor="@color/text"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp"
+            android:text="关闭后，网页里的视频需要点击一次才会开始加载"
+            android:textColor="@color/text_dim"
+            android:textSize="13sp" />
+
+        <Switch
+            android:id="@+id/swTakeover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:showText="true"
+            android:text="自动用内置播放器接管网页视频"
+            android:textColor="@color/text"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp"
+            android:text="开启后，页面里一出现可播放视频就直接用内置播放器打开，不用再手动点；加密内容可在播放失败弹窗里一键切回网页播放"
+            android:textColor="@color/text_dim"
+            android:textSize="13sp" />
+
+        <Switch
+            android:id="@+id/swKeepScreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:showText="true"
+            android:text="播放时保持屏幕常亮"
+            android:textColor="@color/text"
+            android:textSize="17sp" />
+
+        <Switch
+            android:id="@+id/swPullRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:showText="true"
+            android:text="网页顶部下拉即刷新"
+            android:textColor="@color/text"
+            android:textSize="17sp" />
+
+        <Switch
+            android:id="@+id/swPullRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:showText="true"
+            android:text="下拉网页顶部刷新"
+            android:textColor="@color/text"
+            android:textSize="17sp" />
+
+        <Switch
+            android:id="@+id/swDesktopUa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:showText="true"
+            android:text="使用电脑版网页标识"
+            android:textColor="@color/text"
+            android:textSize="17sp" />
+
+        <Switch
+            android:id="@+id/swPullRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:showText="true"
+            android:text="在网页顶部下拉时刷新"
+            android:textColor="@color/text"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp"
+            android:text="隐藏控件后，下拉刷新就是唯一的刷新方式，建议开着"
+            android:textColor="@color/text_dim"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/defaultBrowserBtn"
+            style="@style/Btn"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="10dp"
+            android:text="设为默认浏览器" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="退出后关闭标签页"
+            android:textColor="@color/text"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:paddingBottom="6dp"
+            android:text="跟 Safari 一样：超过所选时间没打开过，标签页就自动关掉"
+            android:textColor="@color/text_dim"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/tabRetentionBtn"
+            style="@style/Btn"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="当前：永不关闭" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="搜索引擎"
+            android:textColor="@color/text"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/engineBtn"
+            style="@style/Btn"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="6dp"
+            android:text="当前搜索引擎：百度" />
+
+        <Button
+            android:id="@+id/clearBtn"
+            style="@style/Btn"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            android:text="清除网页缓存和 Cookie" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="18dp"
+            android:text="关于"
+            android:textColor="@color/text"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="6dp"
+            android:textColor="@color/text_dim"
+            android:textSize="14sp"
+            android:text="网页引擎：安卓系统自带的 Chromium WebView（可随系统或应用商店更新，与 Chrome 内核同源）。\n\n内置播放器：Media3 ExoPlayer，支持 HLS（m3u8）、DASH（mpd）与普通 mp4/webm 等直链，全部通过自绘无障碍控件操作。\n\n支持范围：未加密的 HTML5 视频与 M3U8 流。带 DRM 加密的（如部分爱优腾会员内容、Widevine）无法播放。" />
+
+        <Button
+            android:id="@+id/settingsDone"
+            style="@style/Btn"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:text="返回" />
+    </LinearLayout>
+</ScrollView>

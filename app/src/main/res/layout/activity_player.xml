@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/playerRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/playerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        app:use_controller="false"
+        app:resize_mode="fit" />
+
+    <Button
+        android:id="@+id/restoreBtn"
+        style="@style/Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="8dp"
+        android:text="显示界面"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="#B3000000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="6dp">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="内置播放器"
+            android:textColor="@color/text"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/closeBtn"
+            style="@style/Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:text="关闭" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#CC000000"
+        android:orientation="vertical"
+        android:padding="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/timeNow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="54dp"
+                android:text="00:00"
+                android:textColor="@color/text"
+                android:textSize="14sp" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/timeTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="54dp"
+                android:gravity="right"
+                android:text="00:00"
+                android:textColor="@color/text_dim"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/rewBtn"
+                style="@style/Btn"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:text="后退10秒" />
+
+            <Button
+                android:id="@+id/playBtn"
+                style="@style/Btn"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1.4"
+                android:text="暂停" />
+
+            <Button
+                android:id="@+id/ffBtn"
+                style="@style/Btn"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:text="前进10秒" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/fullBtn"
+                style="@style/Btn"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:text="全屏" />
+
+            <Button
+                android:id="@+id/speedBtn"
+                style="@style/Btn"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:text="倍速 1×" />
+
+            <Button
+                android:id="@+id/trackBtn"
+                style="@style/Btn"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:text="音轨字幕" />
+
+            <Button
+                android:id="@+id/hideBtn"
+                style="@style/Btn"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:text="隐藏界面" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bar"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/urlBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/input_bg"
+                android:hint="@string/hint_url"
+                android:imeOptions="actionGo"
+                android:inputType="textUri|textNoSuggestions"
+                android:maxLines="1"
+                android:minHeight="52dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:singleLine="true"
+                android:textColor="@color/text"
+                android:textColorHint="#FF888888"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/goBtn"
+                style="@style/Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:text="@string/go" />
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/backBtn"
+                    style="@style/Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="@string/back" />
+
+                <Button
+                    android:id="@+id/fwdBtn"
+                    style="@style/Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="@string/forward" />
+
+                <Button
+                    android:id="@+id/reloadBtn"
+                    style="@style/Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="@string/reload" />
+
+                <Button
+                    android:id="@+id/bookmarkBtn"
+                    style="@style/Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="书签" />
+
+                <Button
+                    android:id="@+id/tabBtn"
+                    style="@style/Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="@string/tabs" />
+
+                <Button
+                    android:id="@+id/menuBtn"
+                    style="@style/Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="@string/menu" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/webHost"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/restoreUiBtn"
+            style="@style/Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="top|end"
+            android:layout_margin="8dp"
+            android:text="显示控件"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bar"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp">
+
+        <Button
+            android:id="@+id/playerBtn"
+            style="@style/BtnBig"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="@string/player_btn_zero"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</LinearLayout>

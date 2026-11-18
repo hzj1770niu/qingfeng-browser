@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bmRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bar"
+        android:paddingLeft="14dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="10dp"
+        android:text="书签与历史"
+        android:textColor="@color/text"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bar"
+        android:orientation="horizontal"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp">
+
+        <Button
+            android:id="@+id/modeBookmark"
+            style="@style/Btn"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="书签" />
+
+        <Button
+            android:id="@+id/modeHistory"
+            style="@style/Btn"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="历史" />
+
+        <Button
+            android:id="@+id/addCurrent"
+            style="@style/Btn"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1.2"
+            android:text="收藏当前页" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bar"
+        android:orientation="horizontal"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingBottom="6dp">
+
+        <Button
+            android:id="@+id/clearMode"
+            style="@style/Btn"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="清空历史" />
+
+        <Button
+            android:id="@+id/bmDone"
+            style="@style/Btn"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="关闭" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/bmEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="这里还是空的。"
+        android:textColor="@color/text_dim"
+        android:textSize="14sp" />
+
+    <ListView
+        android:id="@+id/bmList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@color/line"
+        android:dividerHeight="1dp"
+        android:listSelector="@android:color/transparent" />
+</LinearLayout>

@@ -1,0 +1,54 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.qingfeng.browser'
+    compileSdk 35
+    buildToolsVersion '35.0.0'
+
+    defaultConfig {
+        applicationId 'com.qingfeng.browser'
+        minSdk 26
+        targetSdk 35
+        versionCode 5
+        versionName '1.5'
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('../keystore/a11y.jks')
+            storePassword 'a11y2026'
+            keyAlias 'a11y'
+            keyPassword 'a11y2026'
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation 'androidx.media3:media3-exoplayer:1.5.1'
+    implementation 'androidx.media3:media3-exoplayer-hls:1.5.1'
+    implementation 'androidx.media3:media3-exoplayer-dash:1.5.1'
+    implementation 'androidx.media3:media3-ui:1.5.1'
+    implementation 'androidx.core:core:1.13.1'
+}

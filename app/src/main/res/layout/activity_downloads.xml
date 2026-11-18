@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dlRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bar"
+        android:paddingLeft="14dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="10dp"
+        android:text="下载管理"
+        android:textColor="@color/text"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bar"
+        android:orientation="horizontal"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingBottom="6dp">
+
+        <Button
+            android:id="@+id/refreshBtn"
+            style="@style/Btn"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="刷新" />
+
+        <Button
+            android:id="@+id/clearBtn"
+            style="@style/Btn"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="清空记录" />
+
+        <Button
+            android:id="@+id/dlDoneBtn"
+            style="@style/Btn"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="关闭" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/emptyTip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="还没有下载记录。在网页里点下载链接就会自动存到这里。"
+        android:textColor="@color/text_dim"
+        android:textSize="14sp" />
+
+    <ListView
+        android:id="@+id/dlList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@color/line"
+        android:dividerHeight="1dp"
+        android:listSelector="@android:color/transparent" />
+</LinearLayout>
