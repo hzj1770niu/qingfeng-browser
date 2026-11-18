@@ -78,7 +78,8 @@ public class Updater {
             String apkPath = null;
             String note = null;
             String err = null;
-            for (String u : META_URLS) {
+            for (String base : META_URLS) {
+                String u = base + "?t=" + System.currentTimeMillis();
                 try {
                     String body = getText(u);
                     if (body == null) {

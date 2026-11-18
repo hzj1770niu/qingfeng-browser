@@ -1,5 +1,5 @@
 {
-  "version": "1.7",
-  "apk": "apk/qingfeng-browser-v1.7-build2.apk",
-  "notes": "设置页新增检查更新：优先走国内可达线路（ghproxy、gh-proxy、ghfast），jsDelivr 与 GitHub 直连兜底；下载带进度条，完成后自动弹出系统安装；网页视频接管后直接全屏。"
+  "version": "1.8",
+  "apk": "apk/qingfeng-browser-v1.8.apk",
+  "notes": "更新检查优先走国内可达线路，清单请求加时间戳避免 CDN 缓存；下载带进度条，完成后自动弹出系统安装；网页视频接管后直接全屏。"
 }
