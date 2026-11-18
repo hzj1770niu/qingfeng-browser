@@ -1,0 +1,5 @@
+{
+  "version": "1.7",
+  "apk": "apk/qingfeng-browser-v1.7.apk",
+  "notes": "新增应用内检查更新：多线路拉取（jsDelivr、GitHub 直连、gh-proxy、ghfast），下载带进度条，完成后自动弹出安装；视频自动接管后直接全屏。"
+}

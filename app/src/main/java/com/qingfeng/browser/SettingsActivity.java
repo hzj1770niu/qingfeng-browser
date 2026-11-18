@@ -99,6 +99,27 @@ public class SettingsActivity extends Activity {
                     .show();
         });
 
+        final Button updateBtn = findViewById(R.id.updateBtn);
+        updateBtn.setText("检查更新（当前 " + Updater.currentVersion(this) + "）");
+        updateBtn.setContentDescription("检查更新，当前版本 " + Updater.currentVersion(this));
+        updateBtn.setOnClickListener(v -> {
+            updateBtn.announceForAccessibility("正在检查新版本");
+            updateBtn.setText("正在检查更新…");
+            Updater.check(this, (hasNew, version, apkPath, note, error) -> {
+                updateBtn.setText("检查更新（当前 " + Updater.currentVersion(this) + "）");
+                if (error != null) {
+                    updateBtn.announceForAccessibility(error);
+                    return;
+                }
+                if (hasNew) {
+                    updateBtn.announceForAccessibility("发现新版本 " + version);
+                    Updater.promptUpdate(this, version, apkPath, note);
+                } else {
+                    updateBtn.announceForAccessibility("已经是最新版本 " + version);
+                }
+            });
+        });
+
         Button clearBtn = findViewById(R.id.clearBtn);
         clearBtn.setOnClickListener(v -> new AlertDialog.Builder(this,
                 android.R.style.Theme_Material_Dialog_Alert)
