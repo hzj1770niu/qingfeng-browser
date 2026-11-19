@@ -140,7 +140,24 @@ public class MainActivity extends Activity {
         }
         Ui.applyInsets(root);
 
+        // 点一下地址栏就把已填好的网址全选，按一次删除即可清空后重新输入
+        urlBar.setOnClickListener(v -> selectAllUrl());
+        urlBar.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                ui.postDelayed(this::selectAllUrl, 150);
+            }
+        });
+
         goBtn.setOnClickListener(v -> navigateFromBar());
+
+        // 像 Safari 一样：点一下地址栏就全选，按删除键直接清空
+        urlBar.setOnClickListener(v -> urlBar.selectAll());
+        urlBar.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                urlBar.postDelayed(urlBar::selectAll, 60);
+            }
+        });
+        urlBar.setTextIsSelectable(true);
         urlBar.setOnEditorActionListener((v, actionId, event) -> {
             boolean enter = event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER
                     && event.getAction() == KeyEvent.ACTION_DOWN;
@@ -1130,6 +1147,13 @@ public class MainActivity extends Activity {
     }
 
     // ---------------- 地址栏 ----------------
+
+    private void selectAllUrl() {
+        try {
+            urlBar.selectAll();
+        } catch (Throwable ignored) {
+        }
+    }
 
     private void navigateFromBar() {
         String raw = urlBar.getText().toString().trim();
