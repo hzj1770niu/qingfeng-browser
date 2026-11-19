@@ -148,7 +148,7 @@ public class PlayerActivity extends Activity {
             return;
         }
         setFullscreen(true);
-        announce("已自动进入全屏播放");
+        setUiHidden(true);
     }
 
     private void buildPlayer() {
@@ -344,7 +344,9 @@ public class PlayerActivity extends Activity {
         trackBtn.setOnClickListener(v -> showTracksDialog());
 
         hideBtn.setOnClickListener(v -> setUiHidden(true));
-        restoreBtn.setOnClickListener(v -> setUiHidden(false));
+        if (restoreBtn != null) {
+            restoreBtn.setVisibility(View.GONE);
+        }
 
         closeBtn.setOnClickListener(v -> finish());
     }
@@ -545,6 +547,15 @@ public class PlayerActivity extends Activity {
 
     @Override
     public void onBackPressed() {
+        if (uiHidden) {
+            setUiHidden(false);
+            return;
+        }
+        if (immersive) {
+            setFullscreen(false);
+            announce("已退出全屏");
+            return;
+        }
         savePosition();
         finish();
     }
