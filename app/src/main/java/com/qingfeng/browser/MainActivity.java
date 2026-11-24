@@ -133,7 +133,7 @@ public class MainActivity extends Activity {
         menuBtn = findViewById(R.id.menuBtn);
         playerBtn = findViewById(R.id.playerBtn);
         restoreUiBtn = findViewById(R.id.restoreUiBtn);
-        restoreUiBtn.setOnClickListener(v -> setUiHidden(false));
+        restoreUiBtn.setVisibility(View.GONE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             getWindow().setDecorFitsSystemWindows(false);
@@ -437,7 +437,7 @@ public class MainActivity extends Activity {
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW, u));
             } catch (Exception e) {
-                announce("这个链接无法打开");
+                announce("链接无法打开");
             }
             return true;
         }
@@ -494,7 +494,7 @@ public class MainActivity extends Activity {
         @Override
         public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
             if (request != null && request.isForMainFrame()) {
-                announce("网页加载失败，可以点刷新重试");
+                announce("网页加载失败，可点击刷新重试");
             }
         }
     }
@@ -631,7 +631,7 @@ public class MainActivity extends Activity {
     private void addBookmarkDialog() {
         String url = currentTabUrl();
         if (!MediaUtil.isHttp(url)) {
-            announce("当前是空白页，没有可收藏的网址");
+            announce("当前为空白页，没有可收藏的网址");
             return;
         }
         final EditText input = new EditText(this);
@@ -652,7 +652,7 @@ public class MainActivity extends Activity {
                 .setPositiveButton("保存", (d, w) -> {
                     String name = input.getText().toString().trim();
                     boolean ok = Store.addBookmark(this, name, url);
-                    announce(ok ? "已加入书签：" + name : "这个页面已经在书签里了");
+                    announce(ok ? "已加入书签：" + name : "当前页面已在书签中");
                 })
                 .setNegativeButton("取消", null)
                 .show();
@@ -689,7 +689,7 @@ public class MainActivity extends Activity {
             return;
         }
         if (t.media.isEmpty()) {
-            announce("当前页面还没有检测到视频，请先在网页里点一下播放，稍等几秒再试");
+            announce("当前页面未检测到视频，请先在网页中播放，稍后再试");
             new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert)
                     .setTitle("还没检测到视频")
                     .setMessage("网页视频要先在页面里点一次播放，浏览器才能抓到真实地址。"
@@ -736,7 +736,7 @@ public class MainActivity extends Activity {
         if (!resumeJs.isEmpty()) {
             t.web.evaluateJavascript(resumeJs, null);
         }
-        announce("已切回网页自带播放器，加密内容请直接在网页里播放；本站点以后不再自动接管");
+        announce("已切换为网页播放器；加密内容请在网页中播放，本站点后续不再自动接管");
     }
 
     private void manualUrlDialog() {
@@ -759,7 +759,7 @@ public class MainActivity extends Activity {
                     if (MediaUtil.isHttp(u)) {
                         openPlayer(u, currentTab());
                     } else {
-                        announce("地址不正确，需要以 http 或 https 开头");
+                        announce("地址格式不正确，需以 http 或 https 开头");
                     }
                 })
                 .setNegativeButton("取消", null)
@@ -821,7 +821,7 @@ public class MainActivity extends Activity {
         topBar.setVisibility(View.GONE);
         bottomBar.setVisibility(View.GONE);
         Ui.setImmersive(this, true);
-        announce("已进入网页视频全屏，按返回键可以退出全屏");
+        announce("已进入网页全屏，按返回键可退出全屏");
     }
 
     private void hideCustomView() {
@@ -900,7 +900,7 @@ public class MainActivity extends Activity {
                         (android.app.role.RoleManager) getSystemService(android.app.role.RoleManager.class);
                 if (rm != null && rm.isRoleAvailable(android.app.role.RoleManager.ROLE_BROWSER)) {
                     if (rm.isRoleHeld(android.app.role.RoleManager.ROLE_BROWSER)) {
-                        announce("已经是默认浏览器了");
+                        announce("当前已是默认浏览器");
                         return;
                     }
                     startActivityForResult(
@@ -913,13 +913,13 @@ public class MainActivity extends Activity {
         }
         try {
             startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS));
-            announce("请在弹出的系统设置里，把默认浏览器选为“清风浏览器”");
+            announce("请在系统设置中将默认浏览器选为“清风浏览器”");
         } catch (Exception e) {
             try {
                 startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
             } catch (Exception ignored) {
             }
-            announce("请到系统设置里把默认浏览器设为清风浏览器");
+            announce("请到系统设置中将默认浏览器设为本应用");
         }
     }
 
@@ -1049,11 +1049,11 @@ public class MainActivity extends Activity {
         uiHidden = hidden;
         topBar.setVisibility(hidden ? View.GONE : View.VISIBLE);
         bottomBar.setVisibility(hidden ? View.GONE : View.VISIBLE);
-        restoreUiBtn.setVisibility(hidden ? View.VISIBLE : View.GONE);
+        restoreUiBtn.setVisibility(View.GONE);
         if (hidden) {
-            announce("已隐藏网页控件，往下拉网页可以刷新，点右上角显示控件可以恢复");
+            announce("控件已隐藏，下拉网页可刷新，按返回键或全面屏手势可恢复");
         } else {
-            announce("控件已显示");
+            announce("控件已恢复");
         }
     }
 
@@ -1198,7 +1198,7 @@ public class MainActivity extends Activity {
             return; // 交给页面里的 JS 钩子处理
         }
         if (!MediaUtil.isHttp(url)) {
-            announce("这个链接无法下载");
+            announce("链接无法下载");
             return;
         }
         if (url.toLowerCase(java.util.Locale.US).contains(".m3u8")) {
@@ -1229,7 +1229,7 @@ public class MainActivity extends Activity {
         String pageUrl = t == null ? "" : t.url;
         long id = Downloads.enqueue(this, url, userAgent, cd, mime, pageUrl);
         if (id > 0) {
-            announce("开始下载，文件会保存到 Download 文件夹");
+            announce("开始下载，文件将保存至 Download 文件夹");
         } else {
             announce("下载启动失败");
         }
@@ -1243,7 +1243,7 @@ public class MainActivity extends Activity {
                     && grantResults[0] == android.content.pm.PackageManager.PERMISSION_GRANTED) {
                 startDownload(pendUrl, pendUa, pendCd, pendMime);
             } else {
-                announce("没有存储权限，无法保存到 Download 文件夹");
+                announce("未授予存储权限，文件无法保存至 Download 文件夹");
             }
             pendUrl = pendUa = pendCd = pendMime = null;
         }
@@ -1352,6 +1352,10 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
+        if (uiHidden) {
+            setUiHidden(false);
+            return;
+        }
         if (isWebFullscreen()) {
             hideCustomView();
             return;

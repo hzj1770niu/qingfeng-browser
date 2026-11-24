@@ -10,8 +10,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.app.PictureInPictureParams;
+import android.util.Rational;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -81,6 +85,7 @@ public class PlayerActivity extends Activity {
     private boolean immersive = false;
     private boolean uiHidden = false;
     private boolean firstReady = true;
+    private GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +136,7 @@ public class PlayerActivity extends Activity {
         playerView.setKeepScreenOn(true);
         buildPlayer();
 
+        setupGesture();
         bindButtons();
         startTick();
     }
@@ -251,14 +257,7 @@ public class PlayerActivity extends Activity {
             if (player == null) {
                 return;
             }
-            if (player.isPlaying()) {
-                player.pause();
-                announce("已暂停");
-            } else {
-                player.play();
-                announce("继续播放");
-            }
-            updatePlayButton();
+            togglePlayPause();
         });
 
         rewBtn.setOnClickListener(v -> {
@@ -447,7 +446,7 @@ public class PlayerActivity extends Activity {
         }
 
         if (labels.size() == 1) {
-            announce("这个视频没有可切换的音轨或字幕");
+            announce("当前视频没有可切换的音轨或字幕");
             return;
         }
 
@@ -460,7 +459,7 @@ public class PlayerActivity extends Activity {
                     if (which == 0) {
                         player.setTrackSelectionParameters(player.getTrackSelectionParameters()
                                 .buildUpon().clearOverrides().build());
-                        announce("已恢复自动选择");
+                        announce("已恢复默认音轨与字幕");
                     } else {
                         int idx = which - 1;
                         player.setTrackSelectionParameters(player.getTrackSelectionParameters()
@@ -529,8 +528,71 @@ public class PlayerActivity extends Activity {
     protected void onPause() {
         super.onPause();
         savePosition();
-        if (player != null) {
+    }
+
+    private void setupGesture() {
+        gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDoubleTap(android.view.MotionEvent e) {
+                togglePlayPause();
+                return true;
+            }
+        });
+        playerView.setOnTouchListener((v, e) -> gestureDetector.onTouchEvent(e));
+    }
+
+    private void togglePlayPause() {
+        if (player == null) {
+            return;
+        }
+        if (player.isPlaying()) {
             player.pause();
+            announce("已暂停");
+        } else {
+            player.play();
+            announce("继续播放");
+        }
+        updatePlayButton();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (player != null) {
+            if (keyCode == KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE) {
+                togglePlayPause();
+                return true;
+            }
+            if (keyCode == KeyEvent.KEYCODE_MEDIA_PLAY) {
+                player.play();
+                updatePlayButton();
+                return true;
+            }
+            if (keyCode == KeyEvent.KEYCODE_MEDIA_PAUSE) {
+                player.pause();
+                updatePlayButton();
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onUserLeaveHint() {
+        enterPiP();
+    }
+
+    private void enterPiP() {
+        if (Build.VERSION.SDK_INT < 26 || player == null) {
+            return;
+        }
+        try {
+            PictureInPictureParams.Builder b = new PictureInPictureParams.Builder();
+            b.setAspectRatio(new Rational(16, 9));
+            if (Build.VERSION.SDK_INT >= 31) {
+                b.setAutoEnterEnabled(true);
+            }
+            enterPictureInPictureMode(b.build());
+        } catch (Throwable ignored) {
         }
     }
 
