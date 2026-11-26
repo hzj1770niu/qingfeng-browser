@@ -23,7 +23,7 @@ final class Downloads {
         return c.getSharedPreferences(MainActivity.PREFS, Context.MODE_PRIVATE);
     }
 
-    /** 走系统下载服务，和 Chrome 一样存到 Download 目录，通知栏显示进度 */
+    /** 走系统下载服务，存到 Download 目录，通知栏显示进度 */
     static long enqueue(Context c, String url, String userAgent, String contentDisposition,
                         String mime, String pageUrl) {
         String name = guessName(url, contentDisposition, mime);

@@ -143,7 +143,7 @@ public class TabActivity extends Activity {
             title.setText((cur ? "● 当前：" : "") + "第" + (position + 1) + "个：" + t);
             url.setText(u == null ? "" : u);
             row.setContentDescription("标签页" + (position + 1) + "，"
-                    + (cur ? "当前标签页，" : "") + t + "，长按可关闭");
+                    + (cur ? "当前标签页，" : "") + t);
             return row;
         }
     }

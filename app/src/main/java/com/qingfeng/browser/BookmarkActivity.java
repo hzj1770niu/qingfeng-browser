@@ -144,7 +144,7 @@ public class BookmarkActivity extends Activity {
         items.addAll(Store.list(this,
                 mode == MODE_BOOKMARK ? Store.KEY_BOOKMARKS : Store.KEY_HISTORY));
         String empty = mode == MODE_BOOKMARK
-                ? "还没有书签。长按主界面的“书签”按钮，或在上面点“收藏当前页”。"
+                ? "还没有书签。"
                 : "还没有浏览记录。";
         emptyTip.setText(empty);
         emptyTip.setVisibility(items.isEmpty() ? View.VISIBLE : View.GONE);
@@ -194,7 +194,7 @@ public class BookmarkActivity extends Activity {
             String time = e.time > 0 ? fmt.format(new Date(e.time)) + " · " : "";
             url.setText(time + e.url);
             row.setContentDescription("第" + (position + 1) + "条，" + e.title + "，网址 " + e.url
-                    + "，双击打开，长按更多操作");
+                    + "，双击打开");
             return row;
         }
     }

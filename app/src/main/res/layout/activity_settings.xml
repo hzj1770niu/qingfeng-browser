@@ -135,7 +135,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="4dp"
             android:paddingBottom="6dp"
-            android:text="跟 Safari 一样：超过所选时间没打开过，标签页就自动关掉"
+            android:text="超过所选时间未打开，标签页将自动关闭"
             android:textColor="@color/text_dim"
             android:textSize="13sp" />
 

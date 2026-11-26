@@ -150,7 +150,7 @@ public class MainActivity extends Activity {
 
         goBtn.setOnClickListener(v -> navigateFromBar());
 
-        // 像 Safari 一样：点一下地址栏就全选，按删除键直接清空
+        // 点一下地址栏即全选，按删除键直接清空
         urlBar.setOnClickListener(v -> urlBar.selectAll());
         urlBar.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
@@ -627,7 +627,7 @@ public class MainActivity extends Activity {
         t.web.loadUrl(url);
     }
 
-    /** 长按“书签”按钮：像 Safari 一样，直接把当前页面存成书签，标题可改 */
+    /** 长按“书签”按钮：直接将当前页面存成书签，标题可改 */
     private void addBookmarkDialog() {
         String url = currentTabUrl();
         if (!MediaUtil.isHttp(url)) {
@@ -787,6 +787,13 @@ public class MainActivity extends Activity {
             announce(isDefaultBrowser()
                     ? "已设为默认浏览器，以后点网页链接会直接用清风浏览器打开"
                     : "没有设置为默认浏览器");
+        }
+        if (requestCode == REQ_PLAYER) {
+            Tab t = currentTab();
+            if (t != null) {
+                t.media.clear();
+            }
+            refreshPlayerBar();
         }
         if (requestCode == REQ_PLAYER && data != null) {
             String back = data.getStringExtra("backUrl");
@@ -1282,7 +1289,7 @@ public class MainActivity extends Activity {
         fwdBtn.setEnabled(t.web.canGoForward());
         String label = "标签页 " + tabs.size();
         tabBtn.setText(label);
-        tabBtn.setContentDescription("标签页，共 " + tabs.size() + " 个，长按可关闭全部");
+        tabBtn.setContentDescription("标签页，共 " + tabs.size() + " 个");
         refreshPlayerBar();
     }
 

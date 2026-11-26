@@ -192,7 +192,7 @@ public class DownloadActivity extends Activity {
             case DownloadManager.STATUS_PENDING:
                 return "等待中";
             case DownloadManager.STATUS_FAILED:
-                return "下载失败，长按可删除后重试";
+                return "下载失败";
             default:
                 return "未知状态";
         }
@@ -275,7 +275,7 @@ public class DownloadActivity extends Activity {
             TextView status = row.findViewById(R.id.dlStatus);
             name.setText(it.name);
             status.setText(it.status);
-            row.setContentDescription(it.name + "，" + it.status + "，双击打开，长按更多操作");
+            row.setContentDescription(it.name + "，" + it.status + "，双击打开");
             return row;
         }
     }
